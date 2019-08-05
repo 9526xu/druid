@@ -15,32 +15,18 @@
  */
 package com.alibaba.druid.pool;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Date;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
-import java.sql.PreparedStatement;
-import java.sql.Ref;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
-import java.sql.SQLException;
-import java.sql.SQLXML;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Calendar;
-
 import com.alibaba.druid.pool.PreparedStatementPool.MethodType;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
 import com.alibaba.druid.util.OracleUtils;
+
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.*;
+import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * @author wenshao [szujobs@hotmail.com]
@@ -490,7 +476,7 @@ public class DruidPooledPreparedStatement extends DruidPooledStatement implement
         incrementExecuteCount();
         transactionRecord(sql);
 
-        // oracleSetRowPrefetch();
+        oracleSetRowPrefetch();
 
         conn.beforeExecute();
         try {
